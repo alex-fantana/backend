@@ -4,29 +4,29 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.cglib.core.Local;
+
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "Student",
+@Table(name = "notification",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username"), @UniqueConstraint(columnNames = "email")
         })
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Teacher {
+public class Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long Id;
 
-    private String name;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name="notifier_id",referencedColumnName = "id")
+    private User user;
 
-    private String vorname;
+    private LocalDateTime date;
 
-    private String username;
+    private ENotification notificationType;
 
-    private String password;
-
-    private EClass Class;
-
-    private String email;
 }

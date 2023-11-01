@@ -10,14 +10,14 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Student",
+@Table(name = "user",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username"), @UniqueConstraint(columnNames = "email")
         })
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -32,7 +32,12 @@ public class Student {
 
     private String password;
 
-    private EClass Class;
+    private EClass klass;
 
     private String email;
+
+    private ERole role;
+
+    private boolean active;
+    private boolean firstLogin;
 }
